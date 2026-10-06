@@ -1,5 +1,3 @@
-import Database from 'better-sqlite3';
-import { fileURLToPath } from "node:url";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import Database from "better-sqlite3";
