@@ -1,0 +1,23 @@
+name: Déploiement VPS Automatique
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déploiement via SSH sur le VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          port: 23018
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd ~/tp-astrojs-clients
+            git pull origin main
+            /home/etudiant/.bun/bin/bun install
+            /home/etudiant/.bun/bin/bun run build
+            sudo systemctl restart clients-astrojs
