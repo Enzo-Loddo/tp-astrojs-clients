@@ -1,11 +1,8 @@
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
 import Database from "better-sqlite3";
+import { join } from "node:path";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const dbPath = join(__dirname, import.meta.env.SQLITE_DB_PATH);
+// process.cwd() cible toujours la racine du projet
+const dbPath = join(process.cwd(), "data/clients.db");
 
 const db = new Database(dbPath);
 
